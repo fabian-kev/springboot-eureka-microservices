@@ -1,0 +1,16 @@
+server:
+  port: 5000
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: genre
+      failFast: true
+      discovery:
+        serviceId: my-config-server
+        enabled: true
+  application:
+    name: genre-v1
+

@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: anime-producer
+      enabled: true
+      uri: http://localhost:8888
+  application:
+    name: anime-producer

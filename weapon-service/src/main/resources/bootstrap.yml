@@ -1,0 +1,23 @@
+server:
+  port: 7000
+  servlet:
+    context-path: /weapons
+
+spring:
+  application:
+    name: weapon-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: weapon-service
+      failFast: true
+      discovery:
+        serviceId: my-config-server
+        enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:500/eureka/
+

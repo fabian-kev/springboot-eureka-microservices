@@ -1,0 +1,20 @@
+server:
+  port: 5001
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: anime
+      enabled: true
+      discovery:
+        serviceId: my-config-server
+  application:
+    name: anime
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:500/eureka/
+
