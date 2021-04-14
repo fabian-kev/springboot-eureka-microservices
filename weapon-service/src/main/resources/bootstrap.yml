@@ -2,7 +2,6 @@ server:
   port: 7000
   servlet:
     context-path: /weapons
-
 spring:
   application:
     name: weapon-service
@@ -15,6 +14,25 @@ spring:
       discovery:
         serviceId: my-config-server
         enabled: true
+  datasource:
+    url: jdbc:mysql://virtual-world-mysql:3306/virtual_world?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    username: root
+    password: admin
+#    driver-class-name:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+
 
 eureka:
   client:

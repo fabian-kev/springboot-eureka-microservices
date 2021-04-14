@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-abstract class Weapon {
+public class Weapon {
     private Double attack;
     private String name;
 }

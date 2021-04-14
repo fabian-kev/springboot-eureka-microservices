@@ -1,0 +1,97 @@
+version: '3.3'
+
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: eureka-server-image
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - 500:500
+    networks:
+      - virtual-game
+    healthcheck:
+      test: nc -z eureka-server 500
+      interval: 10s
+      timeout: 10s
+      start_period: 10s
+      retries: 10
+#
+  config-server:
+    container_name: config-server
+    image: config-server-image
+    environment:
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:500/eureka
+    build:
+      context: ./config-servier
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+    networks:
+      - virtual-game
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    healthcheck:
+      test: nc -z config-server 8888
+      interval: 10s
+      timeout: 10s
+      start_period: 10s
+      retries: 10
+
+
+  weapon-service:
+    container_name: weapon-service
+    image: weapon-service-image
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_DATASOURCE_URL: jdbc:mysql://weapon_database:3306/weapon_database?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:500/eureka
+    build:
+      context: ./weapon-service
+      dockerfile: Dockerfile
+    ports:
+      - 7000:7000
+    networks:
+      - virtual-game
+    depends_on:
+      weapon_database:
+        condition: service_started
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+
+
+  weapon_database:
+    container_name: weapon_database_mysql
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    #    restart: always
+    environment:
+      MYSQL_DATABASE: weapon_database
+#      MYSQL_USER: root
+      #      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - type: volume
+        source: db-data
+        target: /var/lib/mysql
+    networks:
+      - virtual-game
+
+
+
+#
+volumes:
+  db-data:
+
+networks:
+  virtual-game:
+    driver: bridge
+
+
+
