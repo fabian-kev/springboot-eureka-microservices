@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/swords")
 @RequiredArgsConstructor
@@ -18,15 +20,17 @@ public class WeaponController {
 
     @GetMapping
     public WeaponResource getSwords(){
-        return WeaponResource.builder()
-                .swords(Arrays.asList(
-                        new Sword(1000.0, "Katana", 50.0),
-                        new Sword(5000.0, "Muramasa", 200.0),
-                        new Sword(100.0, "Blade", 20.0),
-                        new Sword(10000.0, "Divine Rapier", 0.0)
-                ))
+        WeaponResource weaponResource = WeaponResource.builder()
                 .message(message)
+                .swords(weaponRepository.findAll()
+                        .stream().map(entity -> {
+                            return Weapon.builder()
+                                    .attack(entity.getAttack())
+                                    .name(entity.getName())
+                                    .build();
+                        }).collect(Collectors.toList()))
                 .build();
+        return weaponResource;
     }
 
     @GetMapping("/greetings")

@@ -13,5 +13,5 @@ import java.util.List;
 @Builder
 public class WeaponResource {
     private String message;
-    private List<Sword> swords;
+    private List<Weapon> swords;
 }
