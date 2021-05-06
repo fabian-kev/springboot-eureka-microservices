@@ -1,0 +1,5 @@
+server:
+  port: 706
+spring:
+  application:
+    name: player-service

@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: account-service
+          uri: lb://account-service
+          predicates:
+            - Path=/accounts/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: account-service
+                fallbackuri: forward:/default-fallback
+        - id: player-service
+          uri: lb://player-service
+          predicates:
+            - Path=/players/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: player-service
+                fallbackuri: forward:/default-fallback
+
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE

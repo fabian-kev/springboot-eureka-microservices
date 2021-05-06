@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/account-service" />
     <file type="web" url="file://$PROJECT_DIR$/anime-producer" />
     <file type="web" url="file://$PROJECT_DIR$/config-servier" />
     <file type="web" url="file://$PROJECT_DIR$/eureka-server" />
     <file type="web" url="file://$PROJECT_DIR$/genre-service" />
+    <file type="web" url="file://$PROJECT_DIR$/hystrix-dashboard" />
+    <file type="web" url="file://$PROJECT_DIR$/player-service2" />
     <file type="web" url="file://$PROJECT_DIR$/weapon-service" />
     <file type="web" url="file://$PROJECT_DIR$/zuul-server" />
   </component>

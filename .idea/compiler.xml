@@ -3,14 +3,33 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.18/481f5bfed3ae29f656eedfe9e98c8365b8ba5c57/lombok-1.18.18.jar" />
+        </processorPath>
+        <module name="weapon-service.main" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="anime-producer" target="1.8" />
       <module name="anime-producer.main" target="1.8" />
       <module name="anime-producer.test" target="1.8" />
+      <module name="config-servier" target="1.8" />
+      <module name="config-servier.main" target="1.8" />
+      <module name="config-servier.test" target="1.8" />
       <module name="genre-service" target="1.8" />
       <module name="genre-service.main" target="1.8" />
       <module name="genre-service.test" target="1.8" />
+      <module name="hystrix-dashboard" target="1.8" />
+      <module name="hystrix-dashboard.main" target="1.8" />
+      <module name="hystrix-dashboard.test" target="1.8" />
+      <module name="player-service" target="1.8" />
+      <module name="player-service.main" target="1.8" />
+      <module name="player-service.test" target="1.8" />
+      <module name="zuul-server" target="1.8" />
+      <module name="zuul-server.main" target="1.8" />
+      <module name="zuul-server.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

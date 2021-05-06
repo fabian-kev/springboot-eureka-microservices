@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      discovery:
+        serviceId: config-server
+        enabled: true

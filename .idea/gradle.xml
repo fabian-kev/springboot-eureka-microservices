@@ -5,12 +5,12 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/anime-producer" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/account-service" />
         <option name="gradleHome" value="$PROJECT_DIR$/../../../../Gradle/gradle-6.0.1" />
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/anime-producer" />
+            <option value="$PROJECT_DIR$/account-service" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -38,12 +38,12 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/genre-service" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/player-service2" />
         <option name="gradleHome" value="$PROJECT_DIR$/../../../../Gradle/gradle-6.0.1" />
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/genre-service" />
+            <option value="$PROJECT_DIR$/player-service2" />
           </set>
         </option>
       </GradleProjectSettings>

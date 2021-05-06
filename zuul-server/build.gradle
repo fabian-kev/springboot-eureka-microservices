@@ -1,11 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.4'
+    id 'org.springframework.boot' version '2.3.10.RELEASE'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'com.google.cloud.tools.jib' version '3.0.0'
 }
 
 group = 'com.fabiankevin.zuul'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.3'
 sourceCompatibility = '1.8'
 
 configurations {
@@ -19,15 +20,16 @@ repositories {
 }
 
 ext {
-    set('springCloudVersion', "2020.0.2")
+    set('springCloudVersion', "Hoxton.SR11")
 }
 
+
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.4.4'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -39,4 +41,26 @@ dependencyManagement {
 
 test {
     useJUnitPlatform()
+}
+
+tasks {
+    build {
+        dependsOn(tasks.jib)
+    }
+}
+
+jib {
+    from {
+        image = 'openjdk:8-jdk-alpine'
+    }
+    to {
+        image = "fbiankevin/${rootProject.name}"
+        tags = ['latest', project.version]
+    }
+    container {
+        jvmFlags = ['-Xms360m', '-Xmx360m']
+        ports = ['5000']
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+    }
+    allowInsecureRegistries = false
 }

@@ -3,26 +3,12 @@ server:
 spring:
   application:
     name: gateway-service
-  cloud:
-    gateway:
-      routes:
-        - id: weapons
-          uri: lb://weapon-service
-          predicates:
-           - Path=/weapons/**
+  profiles:
+    include: router
+  #    active:
 
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:500/eureka/
-
-
-logging:
-  level:
-    reactor:
-      netty: INFO
-    org:
-      springframework:
-        cloud:
-          gateway: TRACE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

@@ -1,0 +1,10 @@
+server:
+  port: 705
+spring:
+  application:
+    name: account-service
+
+
+eureka:
+  client:
+    enabled: true

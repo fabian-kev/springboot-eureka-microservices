@@ -1,16 +1,6 @@
-
 server:
-  port: 500
+  port: 8761
 
-#eureka:
-#  client:
-#    register-with-eureka: false
-
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  profiles:
+    active: dev

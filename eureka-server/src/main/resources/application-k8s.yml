@@ -1,0 +1,8 @@
+eureka:
+  instance:
+    hostname: ${EUREKA_SERVER_BASE_URL}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}/eureka/
